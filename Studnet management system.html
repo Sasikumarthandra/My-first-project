@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student management system mini version</title>
+</head>
+<body>
+    <h1>Student management system</h1>
+       <pre>
+            simple version 
+       </pre>
+</body>  
+<script>
+    class person{
+           constructor(name,age){
+                this.name=  name ;
+                this.age = age;
+           }
+           describe(){
+            console.log(`student name is ${this.name},and age of a student is ${this.age} years old`);
+           }
+    }
+    class student extends person{
+          #grades = []; // praviate fileds;
+
+          constructor(name , age, studentId){
+            super(name,age); // super keyword call the parent class
+            this.studentId = studentId;
+          }
+          addGrade(grade){
+            if(grade >=0 && grade <=100){
+                this.#grades.push(grade);
+            }
+          }
+          getAverageGrde(){
+            if(this.#grades.length === 0) return 0;
+            let sum = this.#grades.reduce((a,b) => a+b ,0);
+            return sum / this.#grades.length;
+          }
+          displayInfo(){
+            this.describe();
+            console.log(`student Id ${this.studentId}`);
+            console.log(`average rade ${this.getAverageGrde().toFixed(2)}`);
+          }
+    }
+    const Student1 = new student("Alice",24,"STU001");
+    Student1.addGrade(90);
+    Student1.addGrade(80);
+    Student1.addGrade(88);
+
+      Student1.displayInfo();
+</script>
+</html>
